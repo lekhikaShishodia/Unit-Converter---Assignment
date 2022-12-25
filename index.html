@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Unit Converter</title>
+
+    <style>
+        /* styling page */
+        body {
+            background-color: black;
+            color: white;
+        }
+
+        .container {
+            border: 2px solid red;
+            display: flex;
+            flex-flow: column wrap;
+            padding: 10px;
+            justify-content: center;
+            align-items: center;
+            width: fit-content;
+            position: absolute;
+            top: 35%;
+            left: 40%;
+        }
+
+        #feetToCm,
+        #result {
+            margin-top: 15px;
+        }
+
+        #feetToCm {
+            background-color: red;
+            color: white;
+        }
+    </style>
+</head>
+
+<body>
+    <div class="container">
+        <h3>Unit Converter</h3>
+        <div>
+            <label for="">Feet</label>
+            <input type="text" id="text">
+        </div>
+        <button type="submit" id="feetToCm">Convert into cm</button>
+         <div id="result"></div> <!--display result here -->
+    </div>
+
+    <script>
+        let buttonClicked = document.getElementById("feetToCm"); //Fetching button Element by Id
+        buttonClicked.addEventListener("click", displayResult); //Adding EventListener to the button
+        //invoke displayResult function when button is clicked.
+
+        function displayResult() {
+            let text = document.querySelector('#text'); //fetching text input from textbox
+            let resultDiv = document.getElementById("result"); //fetching result div to dipslay result
+
+            text = parseInt(text.value);//converting from object to Integer
+
+            //conditions to display result
+            if (isNaN(text))
+                resultDiv.innerHTML = "Please enter a valid number";
+            else if (text <= 0)
+                resultDiv.innerHTML = "Please enter a feet value greater than 0";
+            else {
+                var cm = text * 30.48;
+                resultDiv.innerHTML = `${text} feet = ${cm} cm`;
+            }
+            document.querySelector('#text').value="";
+        }
+    </script>
+</body>
+
+</html>
